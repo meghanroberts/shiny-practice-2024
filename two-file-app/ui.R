@@ -14,8 +14,12 @@ ui <- navbarPage(
           column(10, includeMarkdown("text/about.md")),
           column(1) #adding space on the right
           
-        ) #END intro text fluidrow
-           
+        ), #END intro text fluidrow
+         
+        hr(),
+        
+        includeMarkdown("text/footer.md")
+        
   ), # END (page 1) intro tabPanel
   
   # (Page 2) data viz tabPanel ----
