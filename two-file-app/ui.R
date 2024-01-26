@@ -1,68 +1,82 @@
 # user interface ----
-ui<- navbarPage(
+ui <- navbarPage(
   
-  title="LTER Animal Data Explorer",
+  # add title
+  title = "LTER Animal Data Explorer",
   
-  # (Page 1) intro tab pane; -----
-  tabPanel(title="About this page",
+  # (page 1) intro tabPanel ----
+  tabPanel(title = "About this page",
            
            "background info goes here"
            
-  ), #END pg1
-  # (Page 2) data vis tab panel ----
-  tabPanel(title="Explore the data", 
+  ), # END (page 1) intro tabPanel
+  
+  # (Page 2) data viz tabPanel ----
+  tabPanel(title = "Explore the Data",
            
-           #tabsetpanel to contain tabs for data vis ----
+           # tabsetPanel to contain tabs for data viz ----
            tabsetPanel(
              
-             #trout tab panel ----
-             tabPanel(title="Trout",
+             # trout tabPanel ----
+             tabPanel(title = "Trout",
                       
-                      #trout side bar layout ----
+                      # trout sidebarLayout ----
                       sidebarLayout(
                         
-                        #trout side bar panel ----
+                        # trout sidebarPanel ----
                         sidebarPanel(
                           
-                          "trout inputs will live here"
+                          # channel type pickerInput ----
+                          pickerInput(inputId = "channel_type_input",
+                                      label = "Select channel type(s):",
+                                      choices = unique(clean_trout$channel_type), # produces a vector, all the same data type. alternatively: choices = c("rapid", "cascade" ...)
+                                      selected = c("cascade", "pool"),
+                                      options = pickerOptions(actionsBox = TRUE), # lets you select all or deselect all 
+                                      multiple = TRUE # you can select multiple channel type options
+                          ) # END channel type pickerInput
                           
-                        ),#END trout side bar panel
+                        ), # END trout sidebarPanel
                         
-                        #trout main panel ----
+                        # trout main panel ----
                         mainPanel(
                           
-                          "trout outputs here"
+                          # trout scatterplot output ----
+                          plotOutput(outputId = "trout_scatterplot_output")
                           
-                        )#END trout main panel
-                      ) #END Trout side bar layout
-                      
-             ), #END trout tab panel
-             #penguin tab panel ----
-             tabPanel(title="Penguin",
-                      
-                      #penguin side bar layout ----
-                      sidebarLayout(
+                        ) # END trout mainPanel
                         
-                        #penguin side bar panel ----
-                        sidebarPanel(
-                          
-                          "penguins inputs live here"
-                          
-                        ), #END penguin side bar panel
-                        
-                        #penguin main panel -----
-                        mainPanel(
-                          
-                          "penguin outputs here"
-                          
-                        ) #END penguin main panel
-                        
-                      ) #END penguin side bar layout
+                      ) # END trout sidebarLayout
                       
-             ) #END penguin tab panel
+             ), # END trout tabPanel
              
-           )#END tabsetPanel
+             # penguins tabPanel ----
+             tabPanel(title = "Penguins",
+                      
+                      # penguin sidebarLayout ----
+                      sidebarLayout(
+                        
+                        # penguin sidebarPanel ----
+                        sidebarPanel(
+                          
+                          "penguin inputs will live here"
+                          
+                        ), # END penguin sidebarPanel
+                        
+                        # penguin mainPanel ----
+                        mainPanel(
+                          
+                          "penguin outputs will live here :)"
+                          
+                        ) # END mainPanel 
+                        
+                      ) # END penguin sidebarLayout
+                      
+             ) #END penguins tabPanel
+             
+           ) # END tabsetPanel
            
-  ) #END pg 2
+  ) # END Page 2) data viz tabPanel
   
-)#END navbar page
+) # END navbarPage
+
+
