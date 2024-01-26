@@ -5,7 +5,8 @@ server<-function(input, output){
   trout_filtered_df<-reactive({
     
     clean_trout |> 
-      filter(channel_type %in% c(input$channel_type_input))
+      filter(channel_type %in% c(input$channel_type_input))|> 
+      filter(section %in% c(input$section_input))
   })
   
   #trout scatterplot ----

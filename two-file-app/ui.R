@@ -33,7 +33,16 @@ ui <- navbarPage(
                                       selected = c("cascade", "pool"),
                                       options = pickerOptions(actionsBox = TRUE), # lets you select all or deselect all 
                                       multiple = TRUE # you can select multiple channel type options
-                          ) # END channel type pickerInput
+                          ), # END channel type pickerInput
+                          
+                          #section checkbox group buttons ----
+                          checkboxGroupButtons(inputId="section_input", 
+                                               label= "Select a sampling selection(s):", 
+                                               choices = c("clear cut forest", "old growth forest"),
+                                               selected=c("clear cut forest", "old growth forest"),
+                                               individual = FALSE, justified = TRUE, size = "sm"
+                          ) #END checkbox group buttons
+                          
                           
                         ), # END trout sidebarPanel
                         
