@@ -40,7 +40,9 @@ ui <- navbarPage(
                                                label= "Select a sampling selection(s):", 
                                                choices = c("clear cut forest", "old growth forest"),
                                                selected=c("clear cut forest", "old growth forest"),
-                                               individual = FALSE, justified = TRUE, size = "sm"
+                                               individual = FALSE, justified = TRUE, size = "sm", 
+                                               checkIcon = list(yes=icon("check"), 
+                                                                no=icon("xmark")) #from fontawesome
                           ) #END checkbox group buttons
                           
                           
@@ -67,14 +69,27 @@ ui <- navbarPage(
                         # penguin sidebarPanel ----
                         sidebarPanel(
                           
-                          "penguin inputs will live here"
+                          # island pickerInput ----
+                          pickerInput(inputId = "island_input",
+                                      label = "Select island(s):",
+                                      choices = unique(penguins$island), # produces a vector, all the same data type. alternatively: choices = c("rapid", "cascade" ...)
+                                      selected = "Dream",
+                                      options = pickerOptions(actionsBox = TRUE), # lets you select all or deselect all 
+                                      multiple = TRUE # you can select multiple channel type options
+                          ), # END island pickerInput
+                          
+                          #bin width slider
+                          sliderInput(inputId="bin_width_input",
+                                      label="Select the number of bins:",
+                                      min=5, max=100, value=25)
                           
                         ), # END penguin sidebarPanel
                         
                         # penguin mainPanel ----
                         mainPanel(
                           
-                          "penguin outputs will live here :)"
+                          # penguin scatterplot output ----
+                          plotOutput(outputId = "penguin_barchart")
                           
                         ) # END mainPanel 
                         

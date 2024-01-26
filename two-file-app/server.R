@@ -25,4 +25,24 @@ server<-function(input, output){
     
   })
   
+  #filter penguin data
+  island_df <- reactive({
+    
+    penguins %>%
+      filter(island %in% c(input$island_input))
+    
+  })
+    
+  #penguin barchart
+  output$penguin_barchart<-renderPlot({
+    
+    ggplot(na.omit(island_df()), aes(x = flipper_length_mm, fill = species)) +
+      geom_histogram(alpha = 0.6, position = "identity", bins = input$bin_width_input) +
+      scale_fill_manual(values = c("Adelie" = "#FEA346", "Chinstrap" = "#B251F1", "Gentoo" = "#4BA4A4")) +
+      labs(x = "Flipper length (mm)", y = "Frequency",
+           fill = "Penguin species") +
+      myCustomTheme()
+    
+  })
+  
 }
