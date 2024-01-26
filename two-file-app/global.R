@@ -4,6 +4,7 @@ library(tidyverse)
 library(palmerpenguins)
 library(lterdatasampler)
 library(shinyWidgets)
+library(markdown)
 
 #clean the trout data
 clean_trout <- and_vertebrates |>

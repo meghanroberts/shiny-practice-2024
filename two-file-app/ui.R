@@ -7,7 +7,14 @@ ui <- navbarPage(
   # (page 1) intro tabPanel ----
   tabPanel(title = "About this page",
            
-           "background info goes here"
+        #intro text fluid row ----
+        fluidRow(
+          
+          column(1), #adding space on the left
+          column(10, includeMarkdown("text/about.md")),
+          column(1) #adding space on the right
+          
+        ) #END intro text fluidrow
            
   ), # END (page 1) intro tabPanel
   
@@ -73,12 +80,12 @@ ui <- navbarPage(
                           pickerInput(inputId = "island_input",
                                       label = "Select island(s):",
                                       choices = unique(penguins$island), # produces a vector, all the same data type. alternatively: choices = c("rapid", "cascade" ...)
-                                      selected = "Dream",
+                                      selected = unique(penguins$island),
                                       options = pickerOptions(actionsBox = TRUE), # lets you select all or deselect all 
                                       multiple = TRUE # you can select multiple channel type options
                           ), # END island pickerInput
                           
-                          #bin width slider
+                          #bin width slider -----
                           sliderInput(inputId="bin_width_input",
                                       label="Select the number of bins:",
                                       min=5, max=100, value=25)
