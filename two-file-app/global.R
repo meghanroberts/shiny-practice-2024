@@ -5,6 +5,7 @@ library(palmerpenguins)
 library(lterdatasampler)
 library(shinyWidgets)
 library(markdown)
+library(shinycssloaders)
 
 #clean the trout data
 clean_trout <- and_vertebrates |>

@@ -63,7 +63,8 @@ ui <- navbarPage(
                         mainPanel(
                           
                           # trout scatterplot output ----
-                          plotOutput(outputId = "trout_scatterplot_output")
+                          plotOutput(outputId = "trout_scatterplot_output") %>% 
+                            shinycssloaders::withSpinner(color="magenta", type=1) #add a loading spinner
                           
                         ) # END trout mainPanel
                         
@@ -100,7 +101,8 @@ ui <- navbarPage(
                         mainPanel(
                           
                           # penguin scatterplot output ----
-                          plotOutput(outputId = "penguin_barchart")
+                          plotOutput(outputId = "penguin_barchart") %>% 
+                            shinycssloaders::withSpinner(color="magenta", type=1)
                           
                         ) # END mainPanel 
                         
