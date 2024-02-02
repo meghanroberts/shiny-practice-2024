@@ -3,9 +3,22 @@ library(shiny)
 library(palmerpenguins)
 library(tidyverse)
 library(DT)
+library(bslib)
+
+#thematic for pretty plots
+thematic::thematic_shiny() #this just changes the background, but can fiddle to adjust axis fonts too
 
 # user interface ----
 ui<-fluidPage(
+  
+  #theme -------
+  theme=bs_theme(
+    # bootswatch = "solar" #built in theme
+    bg="#a36f6f",
+    fg="#fdf7f7", 
+    primary="#483132",
+    base_font = font_google("Pacifico")
+    ),
   
   #app title ----
   tags$h1("My App Title"), #level one header

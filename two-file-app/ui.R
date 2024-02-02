@@ -1,6 +1,9 @@
 # user interface ----
 ui <- navbarPage(
   
+  #theme
+  theme="shiny-fresh-theme.css",
+  
   # add title
   title = "LTER Animal Data Explorer",
   

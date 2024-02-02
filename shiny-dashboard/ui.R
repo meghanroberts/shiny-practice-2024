@@ -32,16 +32,24 @@ body<-dashboardBody(
     #welcome tabeItem --------------
     tabItem(
       tabName = "welcome", #from above
-        
+      
       #left-hand column
       column(width=6, 
              
              #background info box
              box(width=NULL, #takes on width of the column
-                 "background info here"
-                 ) #END background box
+                 title = tagList(icon("water"), 
+                                 strong("Monitoring Fish Creek Watershed")),
+                 includeMarkdown("text/intro.md"), 
+                 tags$img(src="FishCreekWatershedSiteMap_2020.jpg",
+                          alt="A map of Northern Alaska showing Fish Creek Watershed located within the National Petroleum Reserve.",
+                          style="max-width:100%;"), #css to ensure the map is the correct size
+                 tags$h6(tags$em("Map Source:", tags$a(href="http://www.fishcreekwatershed.org", 
+                                                       "FCWO")), #end italics
+                         style="text-align: center;")#end h6 (size)
+             ) #END background box
              
-             ), #END column
+      ), #END column
       
       #right-hand column
       column(width=6, 
@@ -52,8 +60,11 @@ body<-dashboardBody(
                
                #citation box
                box(width=NULL, 
-                   "citation here"
-                   )#END citation box
+                   title = tagList(
+                     icon("table"), 
+                     strong("Data Source")),
+                   includeMarkdown("text/citation.md")
+               )#END citation box
                
              ),#END fluidrow one
              
@@ -62,11 +73,14 @@ body<-dashboardBody(
                
                #disclaimer box
                box(width=NULL, 
-                   "disclaimer here"
-                   ) #END disclaimer box
+                   title = tagList(
+                     icon("triangle-exclamation"), 
+                     strong("Disclaimer")),
+                   includeMarkdown("text/disclaimer.md")
+               ) #END disclaimer box
              ) #END fluidrow two
              
-             )#END column right
+      )#END column right
       
     ), #END welcome tab item
     
@@ -88,7 +102,7 @@ body<-dashboardBody(
                         min=min(lake_data$Elevation), 
                         max=max(lake_data$Elevation),
                         value=c(min(lake_data$Elevation), max(lake_data$Elevation)) #two point slider
-                        ),#END first slider input
+            ),#END first slider input
             
             #second slider input ---------------
             sliderInput(inputId="depth_slider_input", 
@@ -106,7 +120,7 @@ body<-dashboardBody(
                         value=c(min(lake_data$AvgTemp), max(lake_data$AvgTemp)) #two point slider
             )#END third slider input
             
-            ), #END input box
+        ), #END input box
         
         
         #map box --------------
@@ -116,7 +130,7 @@ body<-dashboardBody(
             #leaflet output
             leafletOutput(outputId = "lake_map_output") %>% 
               withSpinner(type = 1, color="#4287f5")
-            ) #END map here
+        ) #END map here
         
       )#END Fluidrow
       
