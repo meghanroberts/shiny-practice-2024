@@ -6,6 +6,15 @@ library(lterdatasampler)
 library(shinyWidgets)
 library(markdown)
 library(shinycssloaders)
+library(sass)
+
+##compile css ----------------
+##only for sass style sheets
+sass(
+  input=sass_file("www/sass-styles.scss"),
+  output="www/sass-styles.css", #save as a css instead of scss
+  options = sass_options(output_style="compressed")#compress code to save processing time
+)
 
 #clean the trout data
 clean_trout <- and_vertebrates |>
