@@ -4,6 +4,7 @@ server <- function(input, output) {
   output$penguin_scatterplot_output <- build_penguin_scatterplot(input)
   
   # # render the histogram output ----
+  # # for some reason this function will not work
   # output$penguin_histogram_output <-build_penguin_histogram (input)
   # 
   # 
