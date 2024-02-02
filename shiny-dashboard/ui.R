@@ -26,6 +26,9 @@ sidebar<-dashboardSidebar(
 #dashboard body ------------------------------------
 body<-dashboardBody(
   
+  #theme here ------------------------------------
+  fresh::use_theme("dashboard-fresh-theme.css"),
+  
   #tab items (container function)---------------
   tabItems(
     
