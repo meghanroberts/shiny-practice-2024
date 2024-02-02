@@ -79,11 +79,43 @@ body<-dashboardBody(
         
         #input box -----------
         box(width = 4, 
-            "slider inputs here"
+            
+            title=tags$strong("Adjust lake parameter ranges:"),
+            
+            #first slider input ---------------
+            sliderInput(inputId="elevation_slider_input", 
+                        label = "Elevation (meters above sea level):", 
+                        min=min(lake_data$Elevation), 
+                        max=max(lake_data$Elevation),
+                        value=c(min(lake_data$Elevation), max(lake_data$Elevation)) #two point slider
+                        ),#END first slider input
+            
+            #second slider input ---------------
+            sliderInput(inputId="depth_slider_input", 
+                        label = "Depth (meters):", 
+                        min=min(lake_data$AvgDepth), 
+                        max=max(lake_data$AvgDepth),
+                        value=c(min(lake_data$AvgDepth), max(lake_data$AvgDepth)) #two point slider
+            ),#END second slider input
+            
+            #third slider input ---------------
+            sliderInput(inputId="temp_slider_input", 
+                        label = "Temp (\u00b0C):", 
+                        min=min(lake_data$AvgTemp), 
+                        max=max(lake_data$AvgTemp),
+                        value=c(min(lake_data$AvgTemp), max(lake_data$AvgTemp)) #two point slider
+            )#END third slider input
+            
             ), #END input box
+        
+        
         #map box --------------
         box(width=8, 
-            "map here"
+            title=tags$strong("Monitoring Lakes within Fish Creek Watershed"), 
+            
+            #leaflet output
+            leafletOutput(outputId = "lake_map_output") %>% 
+              withSpinner(type = 1, color="#4287f5")
             ) #END map here
         
       )#END Fluidrow
